@@ -8,23 +8,15 @@ cache:
     - .m2/repository
 
 before_script:
-  - apt-get update
-  - apt-get install -y wget gnupg2 ca-certificates xvfb firefox
-  - Xvfb :99 -ac &
-  - export DISPLAY=:99
-  - echo "Preparing environment..."
-  - firefox --version
+  - echo "Setting up..."
   - mvn -version
 
 test_job:
   stage: test
   script:
-    - echo "Running tests..."
-    - mvn -B clean test
+    - mvn clean test
   artifacts:
-    when: always
     paths:
       - target/cucumber-reports/
-      - target/allure-results/
-      - target/site/allure-maven-plugin/
+    when: always
 
