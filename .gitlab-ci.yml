@@ -14,7 +14,7 @@ before_script:
 test_job:
   stage: test
   script:
-    - mvn -e clean test -Dmaven.test.failure.ignore=true
+    mvn -e clean test
   artifacts:
     when: always
     paths:
