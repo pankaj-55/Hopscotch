@@ -9,10 +9,7 @@ cache:
 
 before_script:
   - apt-get update
-  - apt-get install -y wget gnupg2 ca-certificates bzip2
-  - wget -q -O - https://dl.mozilla.org/firefox/releases/112.0/linux-x86_64/en-US/firefox-112.0.tar.bz2 | tar xjf - -C /opt/
-  - ln -sf /opt/firefox/firefox /usr/bin/firefox
-  - apt-get install -y xvfb
+  - apt-get install -y wget gnupg2 ca-certificates xvfb firefox
   - Xvfb :99 -ac &
   - export DISPLAY=:99
   - echo "Preparing environment..."
@@ -30,3 +27,4 @@ test_job:
       - target/cucumber-reports/
       - target/allure-results/
       - target/site/allure-maven-plugin/
+
