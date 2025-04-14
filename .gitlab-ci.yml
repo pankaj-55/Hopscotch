@@ -8,13 +8,18 @@ cache:
     - .m2/repository
 
 before_script:
+  - apt-get update && apt-get install -y firefox wget unzip xvfb
+  - Xvfb :99 -ac &
+  - export DISPLAY=:99
   - echo "Preparing environment..."
+  - firefox --version
   - mvn -version
 
 test_job:
   stage: test
   script:
-    mvn -e clean test
+    - echo "Running tests..."
+    - mvn -B clean test
   artifacts:
     when: always
     paths:
