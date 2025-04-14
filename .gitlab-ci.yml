@@ -27,7 +27,7 @@ test:
   stage: test
   script:
     - echo "Running tests on Microsoft Edge headless via WebDriverManager"
-    - mvn clean test -DbrowserName=edge -DuseWebdriverManager=true -DrunHeadless=true
+    - mvn clean test -DbrowserName=edge -DuseWebdriverManager=true -DrunHeadless=false
   artifacts:
     when: always
     paths:
