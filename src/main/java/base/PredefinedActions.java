@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 import io.cucumber.java.en_old.Ac;
 import org.apache.maven.model.Model;
@@ -77,6 +78,14 @@ public class PredefinedActions {
             edgeOptions.addArguments("--headless");
             firefoxOptions.addArguments("--headless");
         }
+        // Avoid profile conflict for Edge
+        if (browser.equalsIgnoreCase("edge")) {
+            String uniqueUserDataDir = "/tmp/edge-profile-" + UUID.randomUUID();
+            edgeOptions.addArguments("--user-data-dir=" + uniqueUserDataDir);
+            edgeOptions.addArguments("--no-sandbox");
+            edgeOptions.addArguments("--disable-dev-shm-usage");
+        }
+
 
         switch (browser.toLowerCase()) {
             case "chrome":
