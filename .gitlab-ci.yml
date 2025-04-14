@@ -1,0 +1,21 @@
+image: maven:3.9.4-eclipse-temurin-17
+
+stages:
+  - test
+
+cache:
+  paths:
+    - .m2/repository
+
+before_script:
+  - echo "Setting up..."
+  - mvn -version
+
+test_job:
+  stage: test
+  script:
+    - mvn clean test
+  artifacts:
+    paths:
+      - target/cucumber-reports/
+    when: always
