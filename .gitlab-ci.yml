@@ -9,13 +9,10 @@ cache:
 
 before_script:
   - apt-get update
-  - apt-get install -y software-properties-common gnupg
-  - add-apt-repository -y ppa:mozillateam/ppa
-  - echo 'Package: *' >> /etc/apt/preferences.d/mozilla-firefox
-  - echo 'Pin: release o=LP-PPA-mozillateam' >> /etc/apt/preferences.d/mozilla-firefox
-  - echo 'Pin-Priority: 1001' >> /etc/apt/preferences.d/mozilla-firefox
-  - apt-get update
-  - apt-get install -y firefox xvfb
+  - apt-get install -y wget gnupg2 ca-certificates
+  - wget -q -O - https://dl.mozilla.org/firefox/releases/112.0/linux-x86_64/en-US/firefox-112.0.tar.bz2 | tar xjf - -C /opt/
+  - ln -sf /opt/firefox/firefox /usr/bin/firefox
+  - apt-get install -y xvfb
   - Xvfb :99 -ac &
   - export DISPLAY=:99
   - echo "Preparing environment..."
