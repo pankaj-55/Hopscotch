@@ -28,7 +28,7 @@ Feature: Signin Page UI Functionalities and Element Visibility
     Then Term and condition text should be visible
     Then © 2025 Hopscotch Connect. All rights reserved. text should be visible
 
-  Scenario: Verify clickablity of the elements in the sign in page
+  Scenario: Verify clickablity of the elements in the sign in page.
     Then Hopscotch name should be clickable in Header
     And Header signup button should be clickable
     And Email address input field should be clickable

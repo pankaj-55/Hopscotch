@@ -7,8 +7,8 @@ import io.cucumber.junit.CucumberOptions;
         glue = "stepDefinition",
         //
 
-        //dryRun = true,
-        //monochrome = true,
+       // dryRun = true,
+      //  monochrome = true,
         //strict = true,
         //
 
