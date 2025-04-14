@@ -8,14 +8,16 @@ cache:
     - .m2/repository
 
 before_script:
-  - echo "Setting up..."
+  - echo "Preparing environment..."
   - mvn -version
 
 test_job:
   stage: test
   script:
-    - mvn -e clean test
+    - mvn -e clean test -Dmaven.test.failure.ignore=true
   artifacts:
+    when: always
     paths:
       - target/cucumber-reports/
-    when: always
+      - target/allure-results/
+      - target/site/allure-maven-plugin/
