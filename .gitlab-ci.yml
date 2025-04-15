@@ -28,7 +28,7 @@ test:
   script:
     - echo "Running tests on Chrome (headless via WebDriverManager)"
     - mkdir -p target/allure-results # optional fallback for GitLab artifact warnings
-    - mvn clean test -DbrowserName=chrome -DuseWebdriverManager=true -DrunHeadless=true
+    - mvn clean test -DbrowserName=chrome -DuseWebdriverManager=true -DrunHeadless=false
   artifacts:
     when: always
     paths:
