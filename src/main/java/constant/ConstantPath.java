@@ -9,8 +9,8 @@ public class ConstantPath {
 
     public static final String password = "1233";
 
-    private static final String BASDIR = ".\\src\\main\\java\\config\\";
-
+   // private static final String BASDIR = ".\\src\\main\\java\\config\\";
+    private static final String BASDIR = System.getProperty("user.dir") + "/src/main/java/config/";
     public static final String SIGNINPAGELOCATORS=BASDIR+"SignInPageLocators.properties";
 
     public static final String CHROMEDRIVER = "D:\\chromedriver.exe";
