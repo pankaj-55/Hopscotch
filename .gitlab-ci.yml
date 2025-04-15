@@ -14,11 +14,11 @@ cache:
 before_script:
   - apt-get update
   - apt-get install -y wget gnupg2 software-properties-common curl unzip xvfb
-  # Install Google Chrome
-  - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-  - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+  # Install Google Chrome securely
+  - curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-linux-keyring.gpg
+  - echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
   - apt-get update
-  - apt-get install -y google-chrome-stable
+  - DEBIAN_FRONTEND=noninteractive apt-get install -y google-chrome-stable
   - google-chrome-stable --version
   # Start virtual display
   - Xvfb :99 -ac &
@@ -27,8 +27,8 @@ test:
   stage: test
   script:
     - echo "Running tests on Chrome (headless via WebDriverManager)"
-    - mkdir -p target/allure-results # optional fallback for GitLab artifact warnings
-    - mvn clean test -DbrowserName=chrome -DuseWebdriverManager=true -DrunHeadless=false
+    - mkdir -p target/allure-results
+    - mvn clean test -DbrowserName=chrome -DuseWebdriverManager=true -DrunHeadless=true
   artifacts:
     when: always
     paths:
