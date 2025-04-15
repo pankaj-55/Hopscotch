@@ -14,20 +14,21 @@ cache:
 before_script:
   - apt-get update
   - apt-get install -y wget gnupg2 software-properties-common curl unzip xvfb
-  # Add Microsoft Edge repository
-  - wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | apt-key add -
-  - add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+  # Install Google Chrome
+  - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+  - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
   - apt-get update
-  - apt-get install -y microsoft-edge-stable
-  - microsoft-edge-stable --version
+  - apt-get install -y google-chrome-stable
+  - google-chrome-stable --version
   # Start virtual display
   - Xvfb :99 -ac &
 
 test:
   stage: test
   script:
-    - echo "Running tests on Microsoft Edge headless via WebDriverManager"
-    - mvn clean test -DbrowserName=edge -DuseWebdriverManager=true -DrunHeadless=false
+    - echo "Running tests on Chrome (headless via WebDriverManager)"
+    - mkdir -p target/allure-results # optional fallback for GitLab artifact warnings
+    - mvn clean test -DbrowserName=chrome -DuseWebdriverManager=true -DrunHeadless=true
   artifacts:
     when: always
     paths:
@@ -35,5 +36,3 @@ test:
       - target/allure-results/
       - target/site/allure-maven-plugin/
     expire_in: 1 week
-
-
