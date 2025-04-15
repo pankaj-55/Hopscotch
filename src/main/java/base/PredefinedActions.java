@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.UUID;
 
 import io.cucumber.java.en_old.Ac;
 import org.apache.maven.model.Model;
@@ -78,6 +79,13 @@ public class PredefinedActions {
             firefoxOptions.addArguments("--headless");
         }
 
+        if (browser.equalsIgnoreCase("chrome")) {
+            chromeOptions.addArguments("--no-sandbox");
+            chromeOptions.addArguments("--disable-dev-shm-usage");
+            String tempDir = System.getProperty("java.io.tmpdir");
+            String uniqueUserDataDir = tempDir + "user-data-dir-" + UUID.randomUUID();
+            chromeOptions.addArguments("--user-data-dir=" + uniqueUserDataDir);
+        }
 
         switch (browser.toLowerCase()) {
             case "chrome":
