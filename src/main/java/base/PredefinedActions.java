@@ -12,14 +12,7 @@ import io.cucumber.java.en_old.Ac;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -124,7 +117,8 @@ public class PredefinedActions {
         boolean useWebdriverManager = AutomationHooks.useWebdriverManager;
         boolean runHeadless = AutomationHooks.runHeadless;
         configureSelenium(browserName, useWebdriverManager, runHeadless);
-        getDriver().manage().window().maximize();
+       // getDriver().manage().window().maximize();
+        getDriver().manage().window().setSize(new Dimension(1920, 1080)); // instead of maximize()
         getDriver().get(url);
     }
 
