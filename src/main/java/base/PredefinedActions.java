@@ -72,13 +72,13 @@ public class PredefinedActions {
             firefoxOptions.addArguments("--headless");
         }
 
-        if (browser.equalsIgnoreCase("chrome")) {
+       /* if (browser.equalsIgnoreCase("chrome")) {
             chromeOptions.addArguments("--no-sandbox");
             chromeOptions.addArguments("--disable-dev-shm-usage");
             String tempDir = System.getProperty("java.io.tmpdir");
             String uniqueUserDataDir = tempDir + "user-data-dir-" + UUID.randomUUID();
             chromeOptions.addArguments("--user-data-dir=" + uniqueUserDataDir);
-        }
+        } */
 
         switch (browser.toLowerCase()) {
             case "chrome":
