@@ -40,9 +40,9 @@ Feature: Signin Page UI Functionalities and Element Visibility
    # And Facebook logo should be clickable
    # And Footer Email should be clickable
 
- # Scenario: Verify Redirection page
-  #  When user click on the signup button in the login page for client
-  #  Then the user should be redirected to the sign up page
+  Scenario: Verify Redirection page
+   When user click on the signup button in the login page for client
+   Then the user should be redirected to the sign up page
 
    # Scenario: verify the redirection to forgot password page for client
   #  When user click on the forgot password button in login page for client
